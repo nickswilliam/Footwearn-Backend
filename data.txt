@@ -1,0 +1,4 @@
+DB_URL="mongodb+srv://nickswill2012:P3nE4eIkO3bwtWDl@footwearncluster.6gildkf.mongodb.net/"
+PORT=8001
+KEYFORADMIN=EK22E3FA8734
+SECRETPASS=4P1F00TW3EA4RN
