@@ -1,7 +1,7 @@
 import swaggerJSDoc from "swagger-jsdoc"
 const options = {
     definition: {
-        openapi: "3.0.0",
+        openapi: "3.1.0",
         info: {
             title: "Footwearn API",
             version: "1.0.0",
