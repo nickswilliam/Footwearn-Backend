@@ -1,7 +1,7 @@
 import path from 'path'
 export const swaggerSpec = {
     definition: {
-        openapi: "3.0.0",
+        openapi: "3.0.3",
         info: {
             title: "Footwearn API",
             version: "1.0.0",
