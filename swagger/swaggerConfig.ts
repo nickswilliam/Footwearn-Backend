@@ -1,7 +1,7 @@
-import path from 'path'
-export const swaggerSpec = {
+import swaggerJSDoc from "swagger-jsdoc"
+const options = {
     definition: {
-        openapi: "3.0.3",
+        openapi: "3.0.0",
         info: {
             title: "Footwearn API",
             version: "1.0.0",
@@ -15,3 +15,5 @@ export const swaggerSpec = {
     },
     apis: ["./routes/*.ts"]
 }
+
+export const swaggerSpec = swaggerJSDoc(options)

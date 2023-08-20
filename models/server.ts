@@ -40,12 +40,12 @@ export class Server {
   middlewares(): void {
     this.app.use(cors());
     this.app.use(express.json());
+    this.app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerSpec))
   }
 
   routes(): void {
     this.app.use(this.authPath, authRoutes);
     this.app.use(this.ordersPath, orderRoutes)
     this.app.use(this.issuesPath, issueRoutes)
-    this.app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerJSDoc(swaggerSpec)))
   }
 }
