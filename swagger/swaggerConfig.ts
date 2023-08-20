@@ -9,7 +9,7 @@ export const swaggerSpec = {
         },
         servers: [
             {
-                url: "http://localhost:8001"
+                url: "https://footwearn-backend.vercel.app/"
             }
         ]
     },
