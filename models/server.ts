@@ -3,6 +3,7 @@ import cors from "cors";
 import { connectDB } from "../database/config";
 import authRoutes from "../routes/auth";
 import orderRoutes from '../routes/orders'
+import issueRoutes from '../routes/issues'
 import swaggerUI from 'swagger-ui-express'
 import swaggerJSDoc from 'swagger-jsdoc'
 import { swaggerSpec } from "../swagger/swaggerConfig";
@@ -44,6 +45,7 @@ export class Server {
   routes(): void {
     this.app.use(this.authPath, authRoutes);
     this.app.use(this.ordersPath, orderRoutes)
+    this.app.use(this.issuesPath, issueRoutes)
     this.app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerJSDoc(swaggerSpec)))
   }
 }

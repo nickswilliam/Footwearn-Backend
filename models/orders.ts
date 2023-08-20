@@ -25,7 +25,7 @@ export interface IItem {
 }
 
 export interface IOrder {
-    date: Date, 
+    date: Date, //
     user: Types.ObjectId, 
     price: number,
     shippingCost: number,

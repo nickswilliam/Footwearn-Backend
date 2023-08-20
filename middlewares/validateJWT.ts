@@ -11,7 +11,7 @@ export const validateJWT = async (
 
   if (!token) {
     res.status(401).json({
-      message: "No hay token ingresado en la petición.",
+      message: "No hay un usuario logueado.",
     });
     return;
   }

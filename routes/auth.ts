@@ -10,7 +10,7 @@ const router = Router();
  * @swagger
  * components:
  *  schemas:
- *   User:
+ *   User Register:
  *    type: object
  *    properties:
  *      name:
@@ -35,46 +35,67 @@ const router = Router();
  *      lastname: Gutierrez
  *      email: alang@gmail.com
  *      password: "12345678"
+ * 
+ *   Verify Registered User:
+ *    type: object
+ *    properties:
+ *      email:
+ *        type: string
+ *        description: Email con el que se registró el usuario
+ *      code:
+ *        type: string
+ *        description: Código recibido en la casilla de email del usuario
+ *    required:
+ *      - email
+ *      - code
+ *    example: 
+ *      email: alang@gmail.com
+ *      code: "6A2AF3"
+ * 
+ *   Login User:
+ *    type: object
+ *    properties:
+ *      email:
+ *        type: string
+ *        description: Email con el que se registró el usuario
+ *      password:
+ *        type: string
+ *        description: Contraseña con la que se registró el usuario
+ *    required:
+ *      - email
+ *      - password
+ *    example: 
+ *      email: alang@gmail.com
+ *      password: "12345678"
  */  
 
+
+//Register new user - as simply user or admin
 /**
  * @swagger
  * /auth/register:
  *  post:
  *    summary: Endpoint para el registro de un nuevo usuario
- *    tags: [User]
+ *    tags: [User Register]
+ *    parameters:
+ *      - in: header
+ *        name: admin-key
+ *        description: Crear usuario administrador (Opcional)
+ *        required: false
+ *        schema: 
+ *          type: string
  *    requestBody: 
  *      required: true
  *      content:
  *        application/json:
  *          schema:
  *            type: object
- *            $ref: '#/components/schemas/User'
+ *            $ref: '#/components/schemas/User Register'
  *    responses:
  *      201:
- *        description: Nuevo usuario registrado
+ *        description: Usuario registrado correctamente
  */
 
-
-/**
- * @swagger
- * /auth/register:
- *  post:
- *    summary: Registrar un usuario administrador.
- *    tags: [User]
- *    parameters:
- *      -in: header
- *       name: 
- *       description: Petición dentro del header de la api para registrar un usuario administrador
- *       schema: 
- *        type: object
- *        properties:
- *          key1:
- *            type: string
- *    responses:
- *      201:
- *      description: Usuario creado correctamente      
- */
 router.post(
   "/register",
   [
@@ -95,6 +116,25 @@ router.post(
   register
 );
 
+//Verify registered user
+/**
+ * @swagger
+ * /auth/verify:
+ *  patch:
+ *    summary: Endpoint para verificar un usuario registrado
+ *    tags: [Verify Registered User]
+ *    requestBody: 
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: '#/components/schemas/Verify Registered User'
+ *    responses:
+ *      200:
+ *        description: Usuario verificado correctamente
+ */
+
 router.patch(
   "/verify",
   [
@@ -104,6 +144,26 @@ router.patch(
   ],
   verifyUser
 );
+
+
+//Login registered user
+/**
+ * @swagger
+ * /auth/login:
+ *  post:
+ *    summary: Endpoint para loguear un usuario registrado
+ *    tags: [Login registered user]
+ *    requestBody: 
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: '#/components/schemas/Login User'
+ *    responses:
+ *      200:
+ *        description: Usuario logueado correctamente
+ */
 
 router.post(
   "/login",
