@@ -5,7 +5,7 @@ import { connectDB } from "../database/config";
 import authRoutes from "../routes/auth";
 import orderRoutes from "../routes/orders";
 import issueRoutes from "../routes/issues";
-import swaggerUIBundle from "swagger-ui-express";
+import SwaggerUIBundle from "swagger-ui-express";
 import { swaggerSpec } from "../swagger/swaggerConfig";
 import path from "path";
 
@@ -47,10 +47,9 @@ export class Server {
   }
 
   routes(): void {
-    this.app.use("/", swaggerUIBundle.serve, swaggerUIBundle.setup(swaggerSpec));
     this.app.use(this.authPath, authRoutes);
     this.app.use(this.ordersPath, orderRoutes);
     this.app.use(this.issuesPath, issueRoutes);
-    
+    this.app.use("/", SwaggerUIBundle.serve, SwaggerUIBundle.setup(swaggerSpec));
   }
 }
