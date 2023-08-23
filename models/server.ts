@@ -1,5 +1,4 @@
-import express, { Express } from "express";
-import { Router } from "express";
+import express, { Express } from "express"
 import cors from "cors";
 import { connectDB } from "../database/config";
 import authRoutes from "../routes/auth";
@@ -7,9 +6,7 @@ import orderRoutes from "../routes/orders";
 import issueRoutes from "../routes/issues";
 import SwaggerUIBundle from "swagger-ui-express";
 import { swaggerSpec } from "../swagger/swaggerConfig";
-import path from "path";
 
-const pathToSwaggerUI = require('swagger-ui-dist').absolutePath()
 
 export class Server {
   app: Express;
@@ -17,7 +14,6 @@ export class Server {
   authPath: string;
   ordersPath: string;
   issuesPath: string;
-  router: Router;
 
   constructor() {
     this.app = express();
@@ -28,7 +24,6 @@ export class Server {
     this.ordersPath = "/orders";
     this.issuesPath = "/issues";
     this.routes();
-    this.router = Router();
   }
 
   listen(): void {
@@ -44,7 +39,7 @@ export class Server {
   middlewares(): void {
     this.app.use(cors());
     this.app.use(express.json());
-    this.app.use("/", SwaggerUIBundle.serve, SwaggerUIBundle.setup(swaggerSpec));
+    /* this.app.use("/", SwaggerUIBundle.serve, SwaggerUIBundle.setup(swaggerSpec)); */
   }
 
   routes(): void {
