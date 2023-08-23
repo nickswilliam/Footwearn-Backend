@@ -11,5 +11,8 @@
             "src": "/(.*)",
             "dest": "app.ts"
         }
-    ]
+    ],
+    
+    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+      
 }
