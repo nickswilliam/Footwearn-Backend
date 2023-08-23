@@ -45,12 +45,13 @@ export class Server {
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.static(pathToSwaggerUI));
-    this.app.use("/", swaggerUIBundle.serve, swaggerUIBundle.setup(swaggerSpec));
+    
   }
 
   routes(): void {
     this.app.use(this.authPath, authRoutes);
     this.app.use(this.ordersPath, orderRoutes);
     this.app.use(this.issuesPath, issueRoutes);
+    this.app.use("/", swaggerUIBundle.serve, swaggerUIBundle.setup(swaggerSpec));
   }
 }
