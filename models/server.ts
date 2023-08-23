@@ -4,8 +4,6 @@ import { connectDB } from "../database/config";
 import authRoutes from "../routes/auth";
 import orderRoutes from "../routes/orders";
 import issueRoutes from "../routes/issues";
-import SwaggerUIBundle from "swagger-ui-express";
-import { swaggerSpec } from "../swagger/swaggerConfig";
 
 
 export class Server {
@@ -39,7 +37,6 @@ export class Server {
   middlewares(): void {
     this.app.use(cors());
     this.app.use(express.json());
-    /* this.app.use("/", SwaggerUIBundle.serve, SwaggerUIBundle.setup(swaggerSpec)); */
   }
 
   routes(): void {
