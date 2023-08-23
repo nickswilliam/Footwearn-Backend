@@ -44,7 +44,12 @@ export class Server {
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.static(path.join(__dirname, "public")));
-    this.router.use('./', express.static('node_modules/swagger-ui-dist/', {index: false}), swaggerUI.serve, swaggerUI.setup(swaggerSpec))
+    this.router.use(
+      "/",
+      express.static("node_modules/swagger-ui-dist/", { index: false }),
+      swaggerUI.serve,
+      swaggerUI.setup(swaggerSpec)
+    );
     this.app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
   }
 
