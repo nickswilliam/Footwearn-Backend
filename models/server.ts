@@ -6,9 +6,10 @@ import authRoutes from "../routes/auth";
 import orderRoutes from "../routes/orders";
 import issueRoutes from "../routes/issues";
 import swaggerUI from "swagger-ui-express";
-import swaggerJSDoc from "swagger-jsdoc";
 import { swaggerSpec } from "../swagger/swaggerConfig";
 import path from "path";
+
+const pathToSwaggerUI = require('swagger-ui-dist').absolutePath()
 
 export class Server {
   app: Express;
@@ -43,13 +44,7 @@ export class Server {
   middlewares(): void {
     this.app.use(cors());
     this.app.use(express.json());
-    this.app.use(express.static(path.join(__dirname, "public")));
-    this.router.use(
-      "/",
-      express.static("node_modules/swagger-ui-dist/", { index: false }),
-      swaggerUI.serve,
-      swaggerUI.setup(swaggerSpec)
-    );
+    this.app.use(express.static(pathToSwaggerUI));
     this.app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
   }
 
